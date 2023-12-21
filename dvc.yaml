@@ -1,0 +1,48 @@
+stages:
+  prepare:
+    cmd: python3 src/prepare.py
+    deps:
+    - data_first_draft
+    - annotattions-first-train-draft
+    - src/prepare.py
+    params:
+    - prepare.seed
+    - prepare.train_proportion
+    - prepare.validation_proportion
+    - prepare.test_proportion
+    outs:
+    - datasets
+    - yolo-config.yaml
+
+  # training:
+  #   cmd: python src/train.py
+  #   deps:
+  #   - datasets
+  #   - src/train.py
+  #   params:
+  #   - train.image_size
+  #   - train.epochs
+  #   - train.batch_size
+  #   - train.learning_rate_iniziale
+  #   - train.patience
+  #   - train.seed
+  #   - train.optimizer
+  #   outs:
+  #   - output/train
+
+  # testing:
+  #   cmd: python src/test.py
+  #   deps:
+  #   - datasets
+  #   - output/train/weights
+  #   - src/test.py
+  #   outs:
+  #   - output/val
+
+  # printResults:
+  #   cmd: python src/plot.py
+  #   deps:
+  #   - output/val
+  #   - output/train/results.csv
+  #   - src/utilsPy/utils_printResults.py
+  #   - src/plot.py

@@ -1,0 +1,20 @@
+prepare:
+  image_directory: 'data_first_draft'
+  annotations_directory: 'annotattions-first-train-draft'
+  train_proportion: 0.7
+  validation_proportion: 0.2
+  test_proportion: 0.1
+  seed: 4224
+
+train:
+  image_size: 640
+  epochs: 1000
+  batch_size: 16
+  learning_rate_iniziale: 0.0001
+  patience: 15
+  seed: 4224
+  optimizer: 'Adam'
+  directory_output: 'output'
+
+test:
+  directory_output: 'output'

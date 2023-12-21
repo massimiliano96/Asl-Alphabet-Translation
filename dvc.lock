@@ -1,0 +1,31 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python3 src/prepare.py
+    deps:
+    - path: annotattions-first-train-draft
+      md5: 8f55e5941b3898654cad394952bcbaa5.dir
+      size: 25903
+      nfiles: 588
+    - path: data_first_draft
+      md5: f8e86aeae5709b21bd112f43934b037a.dir
+      size: 7311988
+      nfiles: 578
+    - path: src/prepare.py
+      md5: 529ff683506ec93037ccca7b2188ff19
+      size: 3186
+    params:
+      params.yaml:
+        prepare.seed: 4224
+        prepare.test_proportion: 0.1
+        prepare.train_proportion: 0.7
+        prepare.validation_proportion: 0.2
+    outs:
+    - path: datasets
+      md5: 52c7ad546cb16d3b57e5d424d64360b1.dir
+      size: 7334983
+      nfiles: 1137
+    - path: yolo-config.yaml
+      md5: cad5a17e129b150451b06ad13a3c2cbb
+      size: 256
+      isexec: true

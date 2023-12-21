@@ -2,3 +2,6 @@ data/
 .venv/
 /data
 /data_first_draft
+/datasets
+/yolo-config.yaml
+.vscode/
