@@ -1,0 +1,40 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.4.0
+  hooks:
+    - id: trailing-whitespace
+      # Remove trailing whitespaces from files
+    - id: check-added-large-files
+      args: [--maxkb=500]
+      # Check for large files before committing (max 500 KB)
+    - id: check-case-conflict
+      # Check for case conflicts in filenames
+    - id: check-json
+      # Validate JSON files
+    - id: check-merge-conflict
+      # Check for files with unresolved merge conflicts
+    - id: check-yaml
+      args: ["--unsafe"]
+      # Parse YAML files for syntax without loading them
+    - id: mixed-line-ending
+      # Check for mixed line endings in files
+
+- repo: https://github.com/PyCQA/isort.git
+  rev: 5.12.0
+  hooks:
+    - id: isort
+      # Sort and organize Python imports in files
+
+- repo: https://github.com/ambv/black
+  rev: 23.1.0
+  hooks:
+    - id: black
+      language_version: python3.10
+      # Automatically format Python code using the Black formatter (Python 3.10)
+
+- repo: https://github.com/PyCQA/flake8.git
+  rev: 6.0.0
+  hooks:
+    - id: flake8
+      args: ['--max-line-length=100']
+      # Check Python code against PEP 8 and other style guides
