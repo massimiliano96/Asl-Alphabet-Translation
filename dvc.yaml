@@ -5,25 +5,30 @@ stages:
     - data_first_draft
     - annotattions-first-train-draft
     - src/prepare.py
+    - src/utils/cv_utils.py
     params:
     - prepare.seed
     - prepare.train_proportion
     - prepare.validation_proportion
     - prepare.test_proportion
+    - prepare.gamma
+    - prepare.adjust_images_brightness_strategy
+    - prepare.percentile
     outs:
     - datasets
     - yolo-config.yaml
 
   # training:
-  #   cmd: python src/train.py
+  #   cmd: python3 src/train.py
   #   deps:
   #   - datasets
+  #   - yolo-config.yaml
   #   - src/train.py
   #   params:
   #   - train.image_size
   #   - train.epochs
   #   - train.batch_size
-  #   - train.learning_rate_iniziale
+  #   - train.init_lr
   #   - train.patience
   #   - train.seed
   #   - train.optimizer

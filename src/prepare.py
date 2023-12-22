@@ -2,6 +2,7 @@ import os
 import yaml
 import random
 import shutil
+from utils import cv_utils
 
 
 # Create all paths
@@ -14,8 +15,7 @@ for path in list_path:
     if not os.path.exists(path):
         os.mkdir(path)
 
-
-# Load parameters
+# Load parameters for dataset splitting
 params = yaml.safe_load(open("params.yaml"))["prepare"]
 
 path_dataset_images = params['image_directory']
@@ -69,6 +69,25 @@ for image in list_images_remained1:
     if 'nothing' not in image:
         shutil.copy(f'{path_dataset_labels}/{name_file_label}', f'{path_train_labels}/{name_file_label}')
 
+# Load parameters for brightness adjustment
+adjust_images_brightness_strategy = params['adjust_images_brightness_strategy']
+gamma = params['gamma']
+percentile = params['percentile']
+
+# Define Image Brightenss Handler
+image_brightness_handler = cv_utils.ImageBrightnessHandler(cv_utils.NoneImageStrategy())
+
+# Set the correct brightness adjust stretegy
+match adjust_images_brightness_strategy:
+    case 'All':
+        image_brightness_handler.strategy = cv_utils.AllImageStrategy()
+    case 'Dark':
+        image_brightness_handler.strategy = cv_utils.DarkImagesStrategy(percentile)
+
+# Perform Brightness adjustment
+for dataset in ['train', 'validation', 'test']:
+    path_dataset_images = str('datasets/' + dataset + '/images')
+    image_brightness_handler.adjust_images_brightness(path_dataset_images, gamma)
 
 # Prepare the Yolo config file
 # Read classes from classes.txt

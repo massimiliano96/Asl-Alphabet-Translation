@@ -12,18 +12,24 @@ stages:
       size: 7311988
       nfiles: 578
     - path: src/prepare.py
-      md5: 529ff683506ec93037ccca7b2188ff19
-      size: 3186
+      md5: d4815140d39e21419ff5434b98dc8e8a
+      size: 4045
+    - path: src/utils/cv_utils.py
+      md5: 3ab7500717db674edd63e557f5fd1c9e
+      size: 2921
     params:
       params.yaml:
+        prepare.adjust_images_brightness_strategy: Dark
+        prepare.gamma: 0.4
+        prepare.percentile: 25
         prepare.seed: 4224
         prepare.test_proportion: 0.1
         prepare.train_proportion: 0.7
         prepare.validation_proportion: 0.2
     outs:
     - path: datasets
-      md5: 52c7ad546cb16d3b57e5d424d64360b1.dir
-      size: 7334983
+      md5: 7c060e660ad73c4ef8e2b5e72b16c5c7.dir
+      size: 6845899
       nfiles: 1137
     - path: yolo-config.yaml
       md5: cad5a17e129b150451b06ad13a3c2cbb

@@ -5,3 +5,7 @@ data/
 /datasets
 /yolo-config.yaml
 .vscode/
+/output
+/runs
+/yolov8n.pt
+__pycache__/

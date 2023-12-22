@@ -5,12 +5,15 @@ prepare:
   validation_proportion: 0.2
   test_proportion: 0.1
   seed: 4224
+  gamma: 0.4
+  adjust_images_brightness_strategy: 'Dark'
+  percentile: 25
 
 train:
   image_size: 640
-  epochs: 1000
+  epochs: 50
   batch_size: 16
-  learning_rate_iniziale: 0.0001
+  init_lr: 0.0001
   patience: 15
   seed: 4224
   optimizer: 'Adam'
