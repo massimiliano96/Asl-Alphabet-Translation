@@ -116,7 +116,7 @@ with open(str(params["annotations_directory"] + "/classes.txt"), "r") as classes
 
 # Create YAML data
 yaml_data = {
-    "train": "train",  # Adjust the paths accordingly
+    "train": "train",
     "val": "validation",
     "names": {index: classname for index, classname in enumerate(classes)},
 }
@@ -126,3 +126,15 @@ with open("yolo-config.yaml", "w") as yaml_file:
     yaml.dump(yaml_data, yaml_file, default_flow_style=False)
 
 print("yolo-config.yaml has been updated with class information.")
+
+yaml_data_test = {
+    "train": "train",
+    "val": "test",
+    "names": {index: classname for index, classname in enumerate(classes)},
+}
+
+# Write YAML data to yolo-config-test.yaml
+with open("yolo-config-test.yaml", "w") as yaml_file:
+    yaml.dump(yaml_data, yaml_file, default_flow_style=False)
+
+print("yolo-config-test.yaml has been updated with class information.")

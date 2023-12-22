@@ -32,22 +32,18 @@ stages:
   #   - train.patience
   #   - train.seed
   #   - train.optimizer
+  #   - train.directory_output
   #   outs:
   #   - output/train
 
   # testing:
-  #   cmd: python src/test.py
+  #   cmd: python src/6_testing.py
+  #   params:
+  #   - test.directory_output
   #   deps:
   #   - datasets
   #   - output/train/weights
+  #   - src/utils/plot_utils.py
   #   - src/test.py
   #   outs:
-  #   - output/val
-
-  # printResults:
-  #   cmd: python src/plot.py
-  #   deps:
-  #   - output/val
-  #   - output/train/results.csv
-  #   - src/utilsPy/utils_printResults.py
-  #   - src/plot.py
+  #   - output/test
