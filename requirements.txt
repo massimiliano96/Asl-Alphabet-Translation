@@ -1,0 +1,5 @@
+dvc==2.51.0
+dvc-s3==3.0.1
+opencv-python==4.8.1.78
+numpy==1.24.3
+ultralitics==8.0.228
