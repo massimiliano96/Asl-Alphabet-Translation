@@ -42,8 +42,8 @@ stages:
       size: 7467158
       nfiles: 1139
     - path: src/train.py
-      md5: 2c48c02bd5a30246c2ef6d556f4aa0c8
-      size: 766
+      md5: d80cb61ebb3025879217055bfc32e247
+      size: 878
     - path: yolo-config.yaml
       md5: cad5a17e129b150451b06ad13a3c2cbb
       size: 256
@@ -51,7 +51,7 @@ stages:
       params.yaml:
         train.batch_size: 16
         train.directory_output: output
-        train.epochs: 100
+        train.epochs: 500
         train.image_size: 640
         train.init_lr: 0.0001
         train.optimizer: Adam
@@ -59,9 +59,9 @@ stages:
         train.seed: 4224
     outs:
     - path: output/train
-      md5: 9fd70d4aa2e42fde738d6fbf8e47bf7e.dir
-      size: 19254194
-      nfiles: 26
+      md5: 884d1c2f36b14c11ad52172cf38cbc96.dir
+      size: 18884703
+      nfiles: 23
   testing:
     cmd: python3 src/test.py
     deps:
@@ -70,20 +70,20 @@ stages:
       size: 7467158
       nfiles: 1139
     - path: output/train/weights
-      md5: 734feb7093acb9d1c357bd1a3f3aebfb.dir
-      size: 12534770
+      md5: eca58879e3a83b126a2caedd9065b1cb.dir
+      size: 12564402
       nfiles: 2
     - path: src/test.py
       md5: 03e085cb3dc0fde9c654103f9a17185f
       size: 695
     - path: src/utils/plot_utils.py
-      md5: fa25cb131b9a8cdcd36ac907253a2927
-      size: 489
+      md5: fd3cce311a1ca889833460f7628aa505
+      size: 490
     params:
       params.yaml:
         test.directory_output: output
     outs:
     - path: output/test
-      md5: 8067ed1b05798e4f09d9fccc79100519.dir
-      size: 13273
+      md5: 3821a0092b099bbed7801763ab4f281a.dir
+      size: 12570
       nfiles: 1
