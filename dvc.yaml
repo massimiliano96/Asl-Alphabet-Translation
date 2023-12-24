@@ -18,32 +18,32 @@ stages:
     - datasets
     - yolo-config.yaml
 
-  # training:
-  #   cmd: python3 src/train.py
-  #   deps:
-  #   - datasets
-  #   - yolo-config.yaml
-  #   - src/train.py
-  #   params:
-  #   - train.image_size
-  #   - train.epochs
-  #   - train.batch_size
-  #   - train.init_lr
-  #   - train.patience
-  #   - train.seed
-  #   - train.optimizer
-  #   - train.directory_output
-  #   outs:
-  #   - output/train
+  training:
+    cmd: python3 src/train.py
+    deps:
+    - datasets
+    - yolo-config.yaml
+    - src/train.py
+    params:
+    - train.image_size
+    - train.epochs
+    - train.batch_size
+    - train.init_lr
+    - train.patience
+    - train.seed
+    - train.optimizer
+    - train.directory_output
+    outs:
+    - output/train
 
-  # testing:
-  #   cmd: python src/6_testing.py
-  #   params:
-  #   - test.directory_output
-  #   deps:
-  #   - datasets
-  #   - output/train/weights
-  #   - src/utils/plot_utils.py
-  #   - src/test.py
-  #   outs:
-  #   - output/test
+  testing:
+    cmd: python3 src/test.py
+    params:
+    - test.directory_output
+    deps:
+    - datasets
+    - output/train/weights
+    - src/utils/plot_utils.py
+    - src/test.py
+    outs:
+    - output/test

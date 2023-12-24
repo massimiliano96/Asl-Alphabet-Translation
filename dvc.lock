@@ -12,14 +12,14 @@ stages:
       size: 7311988
       nfiles: 578
     - path: src/prepare.py
-      md5: 80f912cafea362d61c63dd883ac77dfd
-      size: 4273
+      md5: 9b7ae5aa684c89b45c5c6de13290cfb3
+      size: 4612
     - path: src/utils/cv_utils.py
       md5: 8c6983297f37f8baa60adc36477517b6
       size: 3575
     params:
       params.yaml:
-        prepare.adjust_images_brightness_strategy: Dark
+        prepare.adjust_images_brightness_strategy: None
         prepare.gamma: 0.4
         prepare.percentile: 25
         prepare.seed: 4224
@@ -28,10 +28,62 @@ stages:
         prepare.validation_proportion: 0.2
     outs:
     - path: datasets
-      md5: 741786406c819a47ceb91724bd8484aa.dir
-      size: 6845899
+      md5: b98fc4958f171c785c401f7f6e9e2aa9.dir
+      size: 7334983
       nfiles: 1137
     - path: yolo-config.yaml
       md5: cad5a17e129b150451b06ad13a3c2cbb
       size: 256
-      isexec: true
+  training:
+    cmd: python3 src/train.py
+    deps:
+    - path: datasets
+      md5: 1e769f8bfd0b62f05504a879b2b52059.dir
+      size: 7467158
+      nfiles: 1139
+    - path: src/train.py
+      md5: 2c48c02bd5a30246c2ef6d556f4aa0c8
+      size: 766
+    - path: yolo-config.yaml
+      md5: cad5a17e129b150451b06ad13a3c2cbb
+      size: 256
+    params:
+      params.yaml:
+        train.batch_size: 16
+        train.directory_output: output
+        train.epochs: 100
+        train.image_size: 640
+        train.init_lr: 0.0001
+        train.optimizer: Adam
+        train.patience: 15
+        train.seed: 4224
+    outs:
+    - path: output/train
+      md5: 9fd70d4aa2e42fde738d6fbf8e47bf7e.dir
+      size: 19254194
+      nfiles: 26
+  testing:
+    cmd: python3 src/test.py
+    deps:
+    - path: datasets
+      md5: 1e769f8bfd0b62f05504a879b2b52059.dir
+      size: 7467158
+      nfiles: 1139
+    - path: output/train/weights
+      md5: 734feb7093acb9d1c357bd1a3f3aebfb.dir
+      size: 12534770
+      nfiles: 2
+    - path: src/test.py
+      md5: 03e085cb3dc0fde9c654103f9a17185f
+      size: 695
+    - path: src/utils/plot_utils.py
+      md5: fa25cb131b9a8cdcd36ac907253a2927
+      size: 489
+    params:
+      params.yaml:
+        test.directory_output: output
+    outs:
+    - path: output/test
+      md5: 8067ed1b05798e4f09d9fccc79100519.dir
+      size: 13273
+      nfiles: 1

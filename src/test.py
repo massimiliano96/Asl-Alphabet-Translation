@@ -11,7 +11,7 @@ directory_output = params["directory_output"]
 model = YOLO("output/train/weights/best.pt", task="detect")
 
 # Test the model on the test set (workaround since is still not implemented on yolo)
-results = model.val(data="yolov8ConfigTest.yaml", project="output")
+results = model.val(data="yolo-config-test.yaml", project="output")
 
 values = [
     round(results.results_dict["metrics/mAP50(B)"], 2),

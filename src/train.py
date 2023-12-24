@@ -1,3 +1,5 @@
+import os
+
 import yaml
 from ultralytics import YOLO
 
@@ -12,6 +14,10 @@ patience = params["patience"]
 seed = params["seed"]
 directory_output = params["directory_output"]
 optimizer = params["optimizer"]
+
+if os.path.exists(directory_output):
+    os.removedirs(directory_output)
+os.mkdir(directory_output)
 
 
 # Load a model

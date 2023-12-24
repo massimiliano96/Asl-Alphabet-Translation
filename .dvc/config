@@ -1,3 +1,5 @@
 ['remote "origin"']
     url = s3://dvc
     endpointurl = https://dagshub.com/massimiliano96/Asl-Alphabet-Translation.s3
+    access_key_id = 9c39388442985af8451228732b94f6d0aea464be
+    secret_access_key = 9c39388442985af8451228732b94f6d0aea464be
