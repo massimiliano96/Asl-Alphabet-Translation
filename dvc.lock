@@ -42,8 +42,8 @@ stages:
       size: 7467158
       nfiles: 1139
     - path: src/train.py
-      md5: d80cb61ebb3025879217055bfc32e247
-      size: 878
+      md5: 14686ab4e3dd32903215765878a332dd
+      size: 1236
     - path: yolo-config.yaml
       md5: cad5a17e129b150451b06ad13a3c2cbb
       size: 256
@@ -59,7 +59,7 @@ stages:
         train.seed: 4224
     outs:
     - path: output/train
-      md5: 884d1c2f36b14c11ad52172cf38cbc96.dir
+      md5: b0b985f78208c8794217f37c179a5d21.dir
       size: 18884703
       nfiles: 23
   testing:
@@ -70,7 +70,7 @@ stages:
       size: 7467158
       nfiles: 1139
     - path: output/train/weights
-      md5: eca58879e3a83b126a2caedd9065b1cb.dir
+      md5: d90de2fd257042ebf63c1a52555e6c26.dir
       size: 12564402
       nfiles: 2
     - path: src/test.py

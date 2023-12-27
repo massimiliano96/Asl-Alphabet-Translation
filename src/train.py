@@ -1,4 +1,5 @@
 import os
+import shutil
 
 import yaml
 from ultralytics import YOLO
@@ -15,8 +16,17 @@ seed = params["seed"]
 directory_output = params["directory_output"]
 optimizer = params["optimizer"]
 
+params = yaml.safe_load(open("params.yaml"))["prepare"]
+
+path_dataset_images = params["image_directory"]
+path_dataset_labels = str(params["annotations_directory"] + "/labels")
+train_proportion = params["train_proportion"]
+validation_proportion = params["validation_proportion"]
+test_proportion = params["test_proportion"]
+seed = params["seed"]
+
 if os.path.exists(directory_output):
-    os.removedirs(directory_output)
+    shutil.rmtree(directory_output)
 os.mkdir(directory_output)
 
 
