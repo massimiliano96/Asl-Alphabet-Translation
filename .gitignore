@@ -10,3 +10,4 @@ data/
 /yolov8n.pt
 __pycache__/
 .pytest_cache/
+dvclive/
