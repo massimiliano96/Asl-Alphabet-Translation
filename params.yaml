@@ -6,7 +6,7 @@ prepare:
   test_proportion: 0.1
   seed: 4224
   gamma: 0.4
-  adjust_images_brightness_strategy: 'None'
+  adjust_images_brightness_strategy: 'Dark'
   percentile: 25
 
 train:

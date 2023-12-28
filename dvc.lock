@@ -19,7 +19,7 @@ stages:
       size: 3575
     params:
       params.yaml:
-        prepare.adjust_images_brightness_strategy: None
+        prepare.adjust_images_brightness_strategy: Dark
         prepare.gamma: 0.4
         prepare.percentile: 25
         prepare.seed: 4224
@@ -28,8 +28,9 @@ stages:
         prepare.validation_proportion: 0.2
     outs:
     - path: datasets
-      md5: b98fc4958f171c785c401f7f6e9e2aa9.dir
-      size: 7334983
+      hash: md5
+      md5: ae60e88d105b4c413842f2c3345a48bc.dir
+      size: 6845899
       nfiles: 1137
     - path: yolo-config.yaml
       md5: cad5a17e129b150451b06ad13a3c2cbb
@@ -39,8 +40,8 @@ stages:
     deps:
     - path: datasets
       hash: md5
-      md5: 1e769f8bfd0b62f05504a879b2b52059.dir
-      size: 7467158
+      md5: 5c1199aae029a9967310ced99ee061aa.dir
+      size: 6978115
       nfiles: 1139
     - path: src/train.py
       hash: md5
@@ -62,16 +63,16 @@ stages:
     outs:
     - path: output/train
       hash: md5
-      md5: 32cb2120ced860970c64c6251f1eaa82.dir
-      size: 18981767
-      nfiles: 23
+      md5: 274c12e781ce6ecabc834986712c8670.dir
+      size: 19447014
+      nfiles: 26
   testing:
     cmd: python3 src/test.py
     deps:
     - path: output/train/weights
       hash: md5
-      md5: f5c55e1545f424f6fc8abc5a8945e3f7.dir
-      size: 12566962
+      md5: 57421283205101c731d2d53126e1cf54.dir
+      size: 12570098
       nfiles: 2
     - path: src/test.py
       md5: 03e085cb3dc0fde9c654103f9a17185f
@@ -85,6 +86,6 @@ stages:
     outs:
     - path: output/test
       hash: md5
-      md5: 32fbd1d3df4fcd4af3e1167374414606.dir
-      size: 12760
+      md5: ced70b6afabb3ae01e7dbc2cbbc492e0.dir
+      size: 14605
       nfiles: 1
