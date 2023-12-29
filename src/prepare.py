@@ -2,9 +2,12 @@ import os
 import random
 import shutil
 
+import mlflow
 import yaml
 
 from utils import cv_utils
+
+mlflow.start_run()
 
 # Create all paths
 list_path = [
@@ -138,3 +141,7 @@ with open("yolo-config-test.yaml", "w") as yaml_file:
     yaml.dump(yaml_data, yaml_file, default_flow_style=False)
 
 print("yolo-config-test.yaml has been updated with class information.")
+
+mlflow.log_param("adjust_images_brightness_strategy", adjust_images_brightness_strategy)
+mlflow.log_param("gamma", gamma)
+mlflow.log_param("percentile", percentile)
