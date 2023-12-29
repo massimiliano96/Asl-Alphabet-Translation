@@ -1,9 +1,16 @@
 import os
 import shutil
 
+import mlflow
 import yaml
-from dagshub import dagshub_logger
-from ultralytics import YOLO
+
+# from dagshub import dagshub_logger
+from ultralytics import YOLO, settings
+
+settings.update({"mlflow": True})
+
+MLFLOW_TRACKING_URI = os.getenv("MLFLOW_TRACKING_URI")
+mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
 
 # Load parameters
 params = yaml.safe_load(open("params.yaml"))["train"]
@@ -47,13 +54,12 @@ results = model.train(
     optimizer=optimizer,
 )  # train the model
 
-metrics = {
-    key.replace("metrics", "train"): value
-    for key, value in results.results_dict.items()
-}
+# log params with mlflow
+mlflow.log_param("image_size", image_size)
+mlflow.log_param("epochs", epochs)
+mlflow.log_param("batch", batch_size)
+mlflow.log_param("lr0", init_lr)
+mlflow.log_param("patience", patience)
+mlflow.log_param("optimizer", optimizer)
 
-with dagshub_logger(
-    metrics_path="logs/train_metrics.csv", should_log_hparams=False
-) as logger:
-    # Metric logging
-    logger.log_metrics(metrics)
+mlflow.log_artifact("output/train/confusion_matrix_normalized.png")

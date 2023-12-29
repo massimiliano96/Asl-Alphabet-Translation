@@ -1,5 +1,5 @@
+import mlflow
 import yaml
-from dagshub import dagshub_logger
 from ultralytics import YOLO
 
 from utils import plot_utils
@@ -26,8 +26,6 @@ metrics = {
     key.replace("metrics", "test"): value for key, value in results.results_dict.items()
 }
 
-with dagshub_logger(
-    metrics_path="logs/test_metrics.csv", should_log_hparams=False
-) as logger:
-    # Metric logging
-    logger.log_metrics(metrics)
+mlflow.log_metrics(metrics)
+
+mlflow.end_run()
