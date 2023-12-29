@@ -35,6 +35,9 @@ stages:
     - train.directory_output
     outs:
     - output/train
+    metrics:
+    - logs/train_metrics.csv:
+        cache: false
 
   testing:
     cmd: python3 src/test.py

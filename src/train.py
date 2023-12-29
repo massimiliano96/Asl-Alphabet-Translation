@@ -2,6 +2,7 @@ import os
 import shutil
 
 import yaml
+from dagshub import dagshub_logger
 from ultralytics import YOLO
 
 # Load parameters
@@ -45,5 +46,11 @@ results = model.train(
     project=directory_output,
     optimizer=optimizer,
 )  # train the model
+
+with dagshub_logger(
+    metrics_path="logs/train_metrics.csv", should_log_hparams=False
+) as logger:
+    # Metric logging
+    logger.log_metrics(results.results_dict)
 
 # model.export(format='onnx', imgsz=image_size)
