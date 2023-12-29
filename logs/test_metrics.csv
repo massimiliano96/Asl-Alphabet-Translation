@@ -1,0 +1,6 @@
+Name,Value,Timestamp,Step
+"metrics/precision(B)",0.0,1703848876323,1
+"metrics/recall(B)",0.0,1703848876323,1
+"metrics/mAP50(B)",0.0,1703848876323,1
+"metrics/mAP50-95(B)",0.0,1703848876323,1
+"fitness",0.0,1703848876323,1

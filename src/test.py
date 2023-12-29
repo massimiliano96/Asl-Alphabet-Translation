@@ -1,4 +1,5 @@
 import yaml
+from dagshub import dagshub_logger
 from ultralytics import YOLO
 
 from utils import plot_utils
@@ -20,3 +21,9 @@ values = [
 ]
 categories = ["mAP50(B)", "mAP50-95(B)", "fitness"]
 plot_utils.plot_metrics(categories, values)
+
+with dagshub_logger(
+    metrics_path="logs/test_metrics.csv", should_log_hparams=False
+) as logger:
+    # Metric logging
+    logger.log_metrics(results.results_dict)
