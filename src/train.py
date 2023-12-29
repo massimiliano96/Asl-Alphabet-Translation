@@ -1,7 +1,6 @@
 import os
 import shutil
 
-import pandas as pd
 import yaml
 from dagshub import dagshub_logger
 from ultralytics import YOLO
@@ -48,20 +47,13 @@ results = model.train(
     optimizer=optimizer,
 )  # train the model
 
-content = pd.read_csv("output/train/results.csv")
-columns = content.columns
-
-data_list = []
-
-for index, row in content.iterrows():
-    for i in range(0, len(row)):
-        if columns[i].strip() != "epoch":
-            data_list.append({columns[i].strip(), float(row[i])})
+metrics = {
+    key.replace("metrics", "train"): value
+    for key, value in results.results_dict.items()
+}
 
 with dagshub_logger(
     metrics_path="logs/train_metrics.csv", should_log_hparams=False
 ) as logger:
     # Metric logging
-    logger.log_metrics(data_list)
-
-# model.export(format='onnx', imgsz=image_size)
+    logger.log_metrics(metrics)

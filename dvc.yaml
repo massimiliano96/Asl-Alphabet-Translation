@@ -49,3 +49,6 @@ stages:
     - src/test.py
     outs:
     - output/test
+    metrics:
+    - logs/test_metrics.csv:
+        cache: false

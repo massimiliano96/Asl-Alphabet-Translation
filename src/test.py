@@ -22,8 +22,12 @@ values = [
 categories = ["mAP50(B)", "mAP50-95(B)", "fitness"]
 plot_utils.plot_metrics(categories, values)
 
+metrics = {
+    key.replace("metrics", "test"): value for key, value in results.results_dict.items()
+}
+
 with dagshub_logger(
     metrics_path="logs/test_metrics.csv", should_log_hparams=False
 ) as logger:
     # Metric logging
-    logger.log_metrics(results.results_dict)
+    logger.log_metrics(metrics)
