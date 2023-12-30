@@ -9,8 +9,11 @@ from ultralytics import YOLO, settings
 
 settings.update({"mlflow": True})
 
-MLFLOW_TRACKING_URI = os.getenv("MLFLOW_TRACKING_URI")
-mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
+# Read the run ID from the file
+with open("run_id.txt", "r") as file:
+    run_id = file.read().strip()
+
+mlflow.start_run(run_id=run_id)
 
 # Load parameters
 params = yaml.safe_load(open("params.yaml"))["train"]

@@ -7,7 +7,7 @@ prepare:
   seed: 4224
   gamma: 0.4
   adjust_images_brightness_strategy: 'Dark'
-  percentile: 25
+  percentile: 35
 
 train:
   image_size: 640

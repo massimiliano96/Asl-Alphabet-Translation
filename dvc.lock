@@ -12,8 +12,9 @@ stages:
       size: 7311988
       nfiles: 578
     - path: src/prepare.py
-      md5: 9b7ae5aa684c89b45c5c6de13290cfb3
-      size: 4612
+      hash: md5
+      md5: 7ddcdcd1312cbcdd49544abf34f43b94
+      size: 5383
     - path: src/utils/cv_utils.py
       md5: 8c6983297f37f8baa60adc36477517b6
       size: 3575
@@ -21,7 +22,7 @@ stages:
       params.yaml:
         prepare.adjust_images_brightness_strategy: Dark
         prepare.gamma: 0.4
-        prepare.percentile: 25
+        prepare.percentile: 35
         prepare.seed: 4224
         prepare.test_proportion: 0.1
         prepare.train_proportion: 0.7
@@ -29,7 +30,7 @@ stages:
     outs:
     - path: datasets
       hash: md5
-      md5: ae60e88d105b4c413842f2c3345a48bc.dir
+      md5: a8a1d828cde62b48450f359397a1166e.dir
       size: 6845899
       nfiles: 1137
     - path: yolo-config.yaml
@@ -40,13 +41,13 @@ stages:
     deps:
     - path: datasets
       hash: md5
-      md5: 5c1199aae029a9967310ced99ee061aa.dir
-      size: 6978115
+      md5: 57d17d817c2e14ab8e8bc6313edaabb1.dir
+      size: 6978118
       nfiles: 1139
     - path: src/train.py
       hash: md5
-      md5: 45fdd564bbb3395e11d185af08ce09c3
-      size: 1498
+      md5: c0f60a677249180cb3773a7814146b40
+      size: 1746
     - path: yolo-config.yaml
       md5: cad5a17e129b150451b06ad13a3c2cbb
       size: 256
@@ -61,27 +62,23 @@ stages:
         train.patience: 25
         train.seed: 4224
     outs:
-    - path: logs/train_metrics.csv
-      hash: md5
-      md5: ca4f2089277b693b4b5fef6d0cdccff0
-      size: 291
     - path: output/train
       hash: md5
-      md5: 1a08c5c33236e937d60088c014465904.dir
-      size: 18696589
+      md5: b5411f12759fc4aaa7f3d3aff12348b5.dir
+      size: 18734046
       nfiles: 23
   testing:
     cmd: python3 src/test.py
     deps:
     - path: output/train/weights
       hash: md5
-      md5: 3e916e8fd640d6ebb4ef62f8896b288c.dir
-      size: 12591218
+      md5: 68352d8e97461a671c7d88cc270bd3d7.dir
+      size: 12566322
       nfiles: 2
     - path: src/test.py
       hash: md5
-      md5: 338d020fe908d6c0dc9eafb074c3ca56
-      size: 984
+      md5: 4bd17f5276cfca7dbd980152d5aa1320
+      size: 1465
     - path: src/utils/plot_utils.py
       md5: fd3cce311a1ca889833460f7628aa505
       size: 490
@@ -89,12 +86,8 @@ stages:
       params.yaml:
         test.directory_output: output
     outs:
-    - path: logs/test_metrics.csv
-      hash: md5
-      md5: f64ba94bef69e3c96be987c7859aa8c0
-      size: 286
     - path: output/test
       hash: md5
-      md5: 92bc97b4cad219dc139cc22fee67e191.dir
-      size: 12444
+      md5: 9574bef7362665783e7f478602123fb0.dir
+      size: 12742
       nfiles: 1
