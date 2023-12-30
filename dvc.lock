@@ -13,14 +13,14 @@ stages:
       nfiles: 578
     - path: src/prepare.py
       hash: md5
-      md5: 7ddcdcd1312cbcdd49544abf34f43b94
-      size: 5383
+      md5: afa6ddf001a4d29c4f393dac973f9794
+      size: 5447
     - path: src/utils/cv_utils.py
       md5: 8c6983297f37f8baa60adc36477517b6
       size: 3575
     params:
       params.yaml:
-        prepare.adjust_images_brightness_strategy: Dark
+        prepare.adjust_images_brightness_strategy: None
         prepare.gamma: 0.4
         prepare.percentile: 35
         prepare.seed: 4224
@@ -30,8 +30,8 @@ stages:
     outs:
     - path: datasets
       hash: md5
-      md5: a8a1d828cde62b48450f359397a1166e.dir
-      size: 6845899
+      md5: 75cdd840858c2ac646a6ac51d28cf84e.dir
+      size: 7334983
       nfiles: 1137
     - path: yolo-config.yaml
       md5: cad5a17e129b150451b06ad13a3c2cbb
@@ -41,8 +41,8 @@ stages:
     deps:
     - path: datasets
       hash: md5
-      md5: 57d17d817c2e14ab8e8bc6313edaabb1.dir
-      size: 6978118
+      md5: 0c49ac289aa8698768c263a352a0c9f2.dir
+      size: 7467180
       nfiles: 1139
     - path: src/train.py
       hash: md5
@@ -64,21 +64,21 @@ stages:
     outs:
     - path: output/train
       hash: md5
-      md5: b5411f12759fc4aaa7f3d3aff12348b5.dir
-      size: 18734046
+      md5: 54f61b4972ac36253283c1e9bf83ccab.dir
+      size: 18970169
       nfiles: 23
   testing:
     cmd: python3 src/test.py
     deps:
     - path: output/train/weights
       hash: md5
-      md5: 68352d8e97461a671c7d88cc270bd3d7.dir
-      size: 12566322
+      md5: 7c4cf5e6b7e67963178832549dbcb097.dir
+      size: 12585714
       nfiles: 2
     - path: src/test.py
       hash: md5
-      md5: 4bd17f5276cfca7dbd980152d5aa1320
-      size: 1465
+      md5: 85ef5111c1e96a57af815daa6f393038
+      size: 1480
     - path: src/utils/plot_utils.py
       md5: fd3cce311a1ca889833460f7628aa505
       size: 490
@@ -88,6 +88,6 @@ stages:
     outs:
     - path: output/test
       hash: md5
-      md5: 9574bef7362665783e7f478602123fb0.dir
-      size: 12742
+      md5: aa924d50b245809f63acff34f720407f.dir
+      size: 12548
       nfiles: 1
