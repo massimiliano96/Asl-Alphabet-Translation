@@ -12,3 +12,4 @@ __pycache__/
 .pytest_cache/
 dvclive/
 mlruns/
+run_id.txt
