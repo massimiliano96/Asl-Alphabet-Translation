@@ -8,7 +8,7 @@ import numpy as np  # Corrected import for numpy
 import pytest
 from aiohttp_retry import List
 
-from src.utils.cv_utils import (
+from utils.cv_utils import (
     AllImageStrategy,
     DarkImagesStrategy,
     ImageBrightnessHandler,
