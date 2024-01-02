@@ -100,15 +100,6 @@ class TestStrategy:
         assert isinstance(images, list)
         assert all(isinstance(image, str) for image in images)
 
-    # AllImageStrategy returns all image file names in directory
-    def test_all_image_strategy_returns_all_image_file_names(self):
-        strategy = AllImageStrategy()
-        images = strategy.select_images(
-            "./data/asl_alphabet_train/asl_alphabet_train/A"
-        )
-        assert isinstance(images, list)
-        assert all(isinstance(image, str) for image in images)
-
     # images_path argument is not a string
     def test_images_path_argument_not_string(self):
         strategy = AllImageStrategy()
