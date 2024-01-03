@@ -34,7 +34,7 @@ if __name__ == "__main__":
     # Define source and destination directories
     source_directory = "./data/asl_alphabet_train/asl_alphabet_train"
     destination_directory = "data_first_draft"
-    num_images_per_folder = 20
+    num_images_per_folder = 100
 
     # Copy images from source to destination
     copy_images(
