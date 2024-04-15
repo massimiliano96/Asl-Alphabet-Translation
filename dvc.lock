@@ -3,18 +3,20 @@ stages:
   prepare:
     cmd: python3 src/prepare.py
     deps:
-    - path: annotattions-first-train-draft
-      md5: 8f55e5941b3898654cad394952bcbaa5.dir
-      size: 25903
-      nfiles: 588
+    - path: annotations-first-draft
+      hash: md5
+      md5: b456fa9aaa1d4a758cf2ec7b1f28c064.dir
+      size: 255092
+      nfiles: 3343
     - path: data_first_draft
-      md5: f8e86aeae5709b21bd112f43934b037a.dir
-      size: 7311988
-      nfiles: 578
+      hash: md5
+      md5: 09d2b3f0fec92c280c11a500b59860d1.dir
+      size: 42660332
+      nfiles: 3341
     - path: src/prepare.py
       hash: md5
-      md5: afa6ddf001a4d29c4f393dac973f9794
-      size: 5447
+      md5: bc3d88af7bb1d516f41feb9e6150f71d
+      size: 5605
     - path: src/utils/cv_utils.py
       md5: 8c6983297f37f8baa60adc36477517b6
       size: 3575
@@ -30,64 +32,66 @@ stages:
     outs:
     - path: datasets
       hash: md5
-      md5: c7c164d6834dc0566e47495caf8ecf90.dir
-      size: 6716319
-      nfiles: 1137
+      md5: 0e9935373c1fd7ffc0def52d39aa9610.dir
+      size: 39208604
+      nfiles: 6682
     - path: yolo-config.yaml
-      md5: cad5a17e129b150451b06ad13a3c2cbb
+      hash: md5
+      md5: fa59e74d7efe901dd646c1b7a9d6d0ce
       size: 256
   training:
     cmd: python3 src/train.py
     deps:
     - path: datasets
       hash: md5
-      md5: 449faacca5f1e641290086cbcec9e792.dir
-      size: 6848471
-      nfiles: 1139
+      md5: 11bf8d657715d68fe22daee4dfe8f741.dir
+      size: 39975172
+      nfiles: 6684
     - path: src/train.py
       hash: md5
-      md5: 212ad0acce88460295c875e29e406993
-      size: 5279
+      md5: f93de0656ad305dc1ce4656f2e4b78b8
+      size: 4644
     - path: yolo-config.yaml
-      md5: cad5a17e129b150451b06ad13a3c2cbb
+      hash: md5
+      md5: fa59e74d7efe901dd646c1b7a9d6d0ce
       size: 256
     params:
       params.yaml:
         train.batch_size: 16
         train.directory_output: output
-        train.epochs: 1
+        train.epochs: 500
         train.image_size: 640
-        train.init_lr: 0.01
+        train.init_lr: 0.001
         train.optimizer: Adam
         train.patience: 50
         train.seed: 4224
     outs:
     - path: output/train
       hash: md5
-      md5: 153a0c69489811da82aa8b90bc9aafc0.dir
-      size: 16702951
+      md5: f75d818c7dbe8a7caa9d6d998ef86383.dir
+      size: 17549449
       nfiles: 23
   testing:
     cmd: python3 src/test.py
     deps:
     - path: output/train/weights
       hash: md5
-      md5: 51d6c4170373a1ec8a9777ec6ac72eee.dir
-      size: 12512306
+      md5: 7aa83ec4d393962cb8a1cad31179dfec.dir
+      size: 12589362
       nfiles: 2
     - path: src/test.py
       hash: md5
-      md5: 85ef5111c1e96a57af815daa6f393038
-      size: 1480
+      md5: 4669e66d326ac023610a50e3e0ddb9a5
+      size: 1524
     - path: src/utils/plot_utils.py
       md5: fd3cce311a1ca889833460f7628aa505
-      size: 490
+      size: 511
     params:
       params.yaml:
         test.directory_output: output
     outs:
     - path: output/test
       hash: md5
-      md5: 5dafb0e7fbdd114cd20281a06f8ecc28.dir
-      size: 12124
+      md5: 283697ae83caf5f7ad582ed1ca66cf53.dir
+      size: 12453
       nfiles: 1
