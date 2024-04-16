@@ -3,7 +3,7 @@ stages:
     cmd: python3 src/prepare.py
     deps:
     - data_first_draft
-    - annotations-first-train-draft
+    - annotations-first-draft
     - src/prepare.py
     - src/utils/cv_utils.py
     params:

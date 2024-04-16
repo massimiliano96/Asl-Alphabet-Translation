@@ -13,3 +13,5 @@ __pycache__/
 dvclive/
 mlruns/
 run_id.txt
+data_first_training/
+model/

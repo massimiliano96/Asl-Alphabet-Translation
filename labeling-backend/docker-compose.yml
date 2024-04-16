@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  server:
+    container_name: labeling-backend
+    build: .
+    environment:
+      - DAGSHUB_USER_NAME=massimiliano96
+      - DAGSHUB_REPO_NAME=Asl-Alphabet-Translation
+      - DAGSHUB_REPO_OWNER=massimiliano96
+      - DAGSHUB_REPO_TOKEN=9c39388442985af8451228732b94f6d0aea464be
+      - MLFLOW_TRACKING_URI=https://dagshub.com/massimiliano96/Asl-Alphabet-Translation.mlflow
+    ports:
+      - 9090:9090
