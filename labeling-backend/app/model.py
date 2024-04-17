@@ -37,13 +37,25 @@ class Model:
         models = mlflow.search_model_versions(
             filter_string=f"name='{model_name}'", max_results=10
         )
+        
         model_version = "0"
+        run_id = ""
         for model in models:
             if model.current_stage == "Staging":
                 model_version = model.version
+                run_id = model.run_id
 
         logging.info("Model Version = " + model_version)
         model_uri = f"models:/{model_name}/{model_version}"
+        
+        
+        run = mlflow.get_run(run_id)
+
+        # Retrieve parameters of the run
+        params = run.data.params
+        self.adjust_images_brightness_strategy = params["adjust_images_brightness_strategy"]
+        print(self.adjust_images_brightness_strategy)
+            
         mlflow.artifacts.download_artifacts(artifact_uri=model_uri, dst_path="./model")
 
         self.model = torch.load("./model/data/model.pth")

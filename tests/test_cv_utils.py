@@ -4,11 +4,11 @@ import tempfile
 from typing import AnyStr
 
 import cv2
-import numpy as np  # Corrected import for numpy
+import numpy as np
 import pytest
 from aiohttp_retry import List
 
-from utils.cv_utils import (
+from asl_alphabet_translation.utils.cv_utils import (
     AllImageStrategy,
     DarkImagesStrategy,
     ImageBrightnessHandler,
